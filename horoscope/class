@@ -1,0 +1,22 @@
+<p>
+    Hello there, {{ name }}! You are so {{ compliment }}!
+</p>
+
+{% extends 'base.html' %}
+
+{% block title %}
+Receive Compliments!
+{% endblock %}
+
+{% block content %}
+{% if show_compliments %}
+You are so:
+<ul>
+    {% for compliment in compliments %}
+    <li>{{ compliment }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+Have a nice day!
+{% endif %}
+{% endblock %}

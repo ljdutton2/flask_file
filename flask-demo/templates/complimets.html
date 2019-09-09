@@ -1,0 +1,8 @@
+<li>{{ compliment }}</li>
+
+You are so:
+<ul>
+    {% for compliment in compliments %}
+    {% include 'compliment.html' %}
+    {% endfor %}
+</ul>

@@ -1,0 +1,79 @@
+from flask import Flask, render_template, request
+from random import sample
+app = Flask(__name__)  # double ujnderscore for python
+
+compliments = ['coolio', 'smashing', 'neato', 'fantabulous']
+
+# WRITE THE TEMPLATE
+# Create a new file in the templates folder, called compliments.html.
+
+# Note that Jinja templates use a double curly bracket {{}} to display variables or expressions.
+
+# TEMPLATE CONTROL FLOW
+# CONDITIONALS
+# Let's add a conditional to compliments.html so that we will only show a compliment if the user checked 'Show Compliment'.
+
+# # In Jinja we use {% %} to indicate control structures.
+# @app.route('/')
+# def index():
+#     """Show the homepage and ask the user's name."""
+#     return """
+#     <form action='/compliment'>
+#         <p>
+#             What is your name?
+#             <input type="text" name="name"></input>
+#             <button type="submit">Submit</button>
+#         </p>
+#         <p>
+#             <input type = "checkbox" name = "show_compliments"/>
+#         </p>
+
+
+# <select name = "num_compliments" >  # number of compliments?
+# <option value = "1" > One < /option >
+# <option value = "2" > Two < /option >
+# <option value = "3" > Three < /option >
+# </select >
+
+
+@app.route('/compliment')
+def get_compliment():
+    """Give the user a compliment"""
+    name = request.args.get('name')
+    show_compliments = request.args.get('show_compliments')
+    compliments_to_show = sample(compliments, 3)
+
+    return render_template(
+        'compliments.html',
+        name=name,
+        show_compliments=show_compliments,
+        compliments=compliments_to_show)
+
+
+# @app.route('/')
+# def index():
+#     """Show the homepage and ask the user's name."""
+#     return render_template('index.html')
+    # <form action = '/compliment' >
+    #     <p >
+    #         What is your name?
+    #         <input type = "text" name = "name"/>
+    #     </p >
+    #     <p >
+    #         <input type = "checkbox" name = "show_compliments"/>
+    #         Show Compliments
+    #     </p >
+    #     <p >
+    #         How many compliments?
+    #         <select name = "num_compliments" >
+    #             <option value = "1" > One < /option >
+    #             <option value = "2" > Two < /option >
+    #             <option value = "3" > Three < /option >
+    #         </select >
+    #     </p >
+    #     <button type = "submit" > Submit < /button >
+    # </form >
+    # """
+
+    # if __name__ == "__main__":
+    # app.run(debug=True)
